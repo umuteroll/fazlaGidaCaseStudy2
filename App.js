@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Avatar } from 'react-native-elements';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
 
 export default function App() {
   return (
@@ -37,11 +38,12 @@ export default function App() {
           { key: 'Jimmy' },
           { key: 'Julie' },
         ]}
-        style={{margin:"30px"}}
+        style={{margin:"10px"}}
         renderItem={({ item }) => 
         <View style={{ flexDirection:"row"}}>
         <Avatar
             rounded
+            containerStyle={{ marginTop:"12px", marginRight:"5px"}}
             source={{
               uri:
                 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -56,6 +58,16 @@ export default function App() {
             {item.key}
           </Text>
         </View>
+        <View style={{  flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginBottom:"15px"
+        
+        }}>
+        <Icon name="rocket" size={25} color="#900" />
+          </View>
+        
         </View>
         }
       />
