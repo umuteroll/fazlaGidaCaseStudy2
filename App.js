@@ -1,10 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Avatar } from 'react-native-elements';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
 
 export default function App() {
+  
+    const [contacts, setContacts] = useState([])
+    useEffect( () => {
+      fetch('https://randomuser.me/api/?results=10')
+      .then(resp => resp.json())
+      .then(resp => setContacts(resp.results))
+
+
+    }, [])
+    
+   console.log(contacts)
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={{
@@ -26,18 +38,7 @@ export default function App() {
       </SafeAreaView>
 
       <FlatList
-        data={[
-          { key: 'Devin' },
-          { key: 'Dan' },
-          { key: 'Dominic' },
-          { key: 'Jackson' },
-          { key: 'James' },
-          { key: 'Joel' },
-          { key: 'John' },
-          { key: 'Jillian' },
-          { key: 'Jimmy' },
-          { key: 'Julie' },
-        ]}
+        data={contacts}
         style={{margin:"10px"}}
         renderItem={({ item }) => 
         <View style={{ flexDirection:"row"}}>
@@ -46,16 +47,16 @@ export default function App() {
             containerStyle={{ marginTop:"12px", marginRight:"5px"}}
             source={{
               uri:
-                'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                item.picture.thumbnail,
             }}
           />
         <View style={{ minHeight: 70, padding: 5 }}>
           <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 26 }}>
-            {item.key + ' '}
-            {item.key}
+            {item.name.first + ' '}
+            {item.name.last }
           </Text>
           <Text style={{ color: 'grey', fontWeight: 'bold' }}>
-            {item.key}
+            {item.email}
           </Text>
         </View>
         <View style={{  flex: 1,
