@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Avatar } from 'react-native-elements';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
 
@@ -66,7 +66,7 @@ export default function App() {
         marginBottom:"15px"
         
         }}>
-        <Icon name="rocket" size={25} color="#900" />
+        <Icon name={item.gender+"-outline"} size={25} color="black" />
           </View>
         
         </View>
