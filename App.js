@@ -2,11 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Avatar } from 'react-native-elements';
-import { FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
+import { RefreshControl, FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
 
 export default function App() {
   
     const [contacts, setContacts] = useState([])
+    const [refreshing, setRefreshing] = React.useState(false);
     useEffect( () => {
       fetch('https://randomuser.me/api/?results=10')
       .then(resp => resp.json())
@@ -15,7 +16,18 @@ export default function App() {
 
     }, [])
     
-   console.log(contacts)
+    const onRefresh = React.useCallback(async () => {
+      setRefreshing(true);
+      useEffect( () => {
+        fetch('https://randomuser.me/api/?results=10')
+        .then(resp => resp.json())
+        .then(resp => setContacts(resp.results))
+  
+  
+      }, [])
+    }, [refreshing]);
+    
+   
 
   return (
     <View style={styles.container}>
@@ -40,6 +52,7 @@ export default function App() {
       <FlatList
         data={contacts}
         style={{margin:"10px"}}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         renderItem={({ item }) => 
         <View style={{ flexDirection:"row"}}>
         <Avatar
