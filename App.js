@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Icon2 from 'react-native-vector-icons/Fontisto';
 import { Avatar } from 'react-native-elements';
 import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -121,10 +122,11 @@ shadowRadius: 2,}}>
       <Text> {new Date(birthDay).toLocaleDateString()}</Text>
       </View>
       <View style={{ margin:"10px",flexDirection:"row",alignItems: 'center', justifyContent: 'center'}}>
-      <Icon name={"logo-facebook"} size={35} color="blue" padding={"20px"}/>
+      <Icon name={"logo-facebook"} size={35} color="#4267B2" padding={"20px"}/>
       <Icon name={"logo-instagram"} size={35} color="purple" />
-      <Icon name={"logo-linkedin"} size={35} color="blue" />
-      <Icon name={"logo-twitter"} size={35} color="blue" />
+      <Icon2 name={"world-o"} size={35} color="black" />
+      <Icon name={"logo-linkedin"} size={35} color="#0e76a8" />
+      <Icon name={"logo-twitter"} size={35} color="#1DA1F2" />
       </View>
       </View>
       
