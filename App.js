@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { TouchableOpacity, TouchableHighlight, RefreshControl, FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
+import { Image, TouchableOpacity, TouchableHighlight, RefreshControl, FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
 
 
 
@@ -93,13 +93,29 @@ function HomeScreen({ navigation }) {
 function DetailsScreen({ route, navigation }) {
   const { nameAndSurname,email,phone,mediumPhoto,birthDay } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Text>nameAndSurname: {JSON.stringify(nameAndSurname)}</Text>
-      <Text>email: {JSON.stringify(email)}</Text>
-      <Text>phone: {JSON.stringify(phone)}</Text>
-      <Text>mediumPhoto: {JSON.stringify(mediumPhoto)}</Text>
-      <Text>birthDay: {new Date(birthDay).toLocaleDateString()}</Text>
+    <View style={{  alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{marginTop:"70px"}}> 
+      <Image source={{ uri: mediumPhoto}}  style={{ height: 200,
+    width: 200,
+    borderRadius: 100,
+    overflow:"hidden",
+    marginBottom:"-20px"
+
+    
+    }} />
+    </View>
+      
+      <View style={{borderRadius:10,backgroundColor:"white", height:"80%" ,width:"80%",zIndex:-5}}> 
+      
+      
+      <View style={{margin:"10px",marginTop:"50px",alignItems: 'center', justifyContent: 'center'}} > 
+      <Text style={{fontSize:30,fontWeight:"bold"}} >{nameAndSurname}</Text>
+      <Text style={{color:"grey"}}>{email}</Text>
+      <Text> {phone}</Text>
+      <Text> {new Date(birthDay).toLocaleDateString()}</Text>
+      </View>
+      </View>
+      
     
     </View>
   );
