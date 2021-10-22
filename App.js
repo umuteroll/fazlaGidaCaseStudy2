@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Avatar } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Image, TouchableOpacity, TouchableHighlight, RefreshControl, FlatList, SafeAreaView, StyleSheet, Text, View, ViewBase } from 'react-native';
@@ -94,10 +94,10 @@ function DetailsScreen({ route, navigation }) {
   const { nameAndSurname,email,phone,mediumPhoto,birthDay } = route.params;
   return (
     <View style={{  alignItems: 'center', justifyContent: 'center' }}>
-      <View style={{marginTop:"70px"}}> 
-      <Image source={{ uri: mediumPhoto}}  style={{ height: 200,
-    width: 200,
-    borderRadius: 100,
+      <View style={{marginTop:"150px"}}> 
+      <Image source={{ uri: mediumPhoto}}  style={{ height: 250,
+    width: 250,
+    borderRadius: 125,
     overflow:"hidden",
     marginBottom:"-20px"
 
@@ -105,14 +105,26 @@ function DetailsScreen({ route, navigation }) {
     }} />
     </View>
       
-      <View style={{borderRadius:10,backgroundColor:"white", height:"80%" ,width:"80%",zIndex:-5}}> 
+      <View style={{marginBottom:"100px",borderRadius:10,backgroundColor:"white", height:"60%" ,width:"80%",zIndex:-5,borderWidth: 1,
+borderColor: "#ddd",
+borderBottomWidth: 0,
+shadowColor: "#000",
+shadowOffset: {width: 0, height: 2},
+shadowOpacity: 0.8,
+shadowRadius: 2,}}> 
       
       
       <View style={{margin:"10px",marginTop:"50px",alignItems: 'center', justifyContent: 'center'}} > 
       <Text style={{fontSize:30,fontWeight:"bold"}} >{nameAndSurname}</Text>
-      <Text style={{color:"grey"}}>{email}</Text>
+      <Text style={{margin:"10px", color:"grey"}}>{email}</Text>
       <Text> {phone}</Text>
       <Text> {new Date(birthDay).toLocaleDateString()}</Text>
+      </View>
+      <View style={{ margin:"10px",flexDirection:"row",alignItems: 'center', justifyContent: 'center'}}>
+      <Icon name={"logo-facebook"} size={35} color="blue" padding={"20px"}/>
+      <Icon name={"logo-instagram"} size={35} color="purple" />
+      <Icon name={"logo-linkedin"} size={35} color="blue" />
+      <Icon name={"logo-twitter"} size={35} color="blue" />
       </View>
       </View>
       
@@ -126,14 +138,15 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen style={{backgroundColor: "pink"}} name="Random Users" component={HomeScreen} />
+    <NavigationContainer >
+    <Stack.Navigator >
+      <Stack.Screen  name="Random Users" component={HomeScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 
   );
 }
+
 
 
